@@ -1,0 +1,25 @@
+{
+  "name": "micro-modules",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "mocha --require babel-register modules/*/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbbyShaw36/micro-modules.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AbbyShaw36/micro-modules/issues"
+  },
+  "homepage": "https://github.com/AbbyShaw36/micro-modules#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "mocha": "^4.0.1"
+  }
+}
