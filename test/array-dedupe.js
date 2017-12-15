@@ -1,23 +1,23 @@
 var assert = require("assert");
 
-import dedupe from "./";
+import dedupe from "../src/array/dedupe";
 
 describe("dedupe", function() {
 	it("should throw an error if invalid arguments are passed", function() {
 		assert.throws(function() {
-			first();
+			dedupe();
 		}, Error);
 
 		assert.throws(function() {
-			first({test: 'test'});
+			dedupe({test: 'test'});
 		}, Error);
 
 		assert.throws(function() {
-			first('test');
+			dedupe('test');
 		}, Error);
 
 		assert.throws(function() {
-			first(null);
+			dedupe(null);
 		}, Error);
 	});
 

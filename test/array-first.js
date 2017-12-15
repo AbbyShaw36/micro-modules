@@ -1,6 +1,6 @@
 var assert = require("assert");
 
-import first from "./";
+import first from "../src/array/first";
 
 describe("arrayFirst", function() {
 	it("should throw an error if invalid arguments are passed", function() {
@@ -35,4 +35,4 @@ describe("arrayFirst", function() {
 		assert.strictEqual(first([]), null);
 		assert.strictEqual(first([], 2), null);
 	});
-})
+});

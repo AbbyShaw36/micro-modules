@@ -1,23 +1,23 @@
 let assert = require("assert");
 
-import flatten from "./";
+import flatten from "../src/array/flatten";
 
 describe("flatten", function() {
 	it("should throw an error if invalid arguments are passed", function() {
 		assert.throws(function() {
-			first();
+			flatten();
 		}, Error);
 
 		assert.throws(function() {
-			first({test: 'test'});
+			flatten({test: 'test'});
 		}, Error);
 
 		assert.throws(function() {
-			first('test');
+			flatten('test');
 		}, Error);
 
 		assert.throws(function() {
-			first(null);
+			flatten(null);
 		}, Error);
 	});
 

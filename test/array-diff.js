@@ -1,6 +1,6 @@
 var assert = require("assert");
 
-import diff from "./";
+import diff from "../src/array/diff";
 
 describe("arrayDiff", function() {
 	it("should throw an error if invalid arguments are passed", function() {
@@ -31,4 +31,4 @@ describe("arrayDiff", function() {
 		assert.deepEqual(diff([1,4], [2,3,4]), [1,2,3]);
 		assert.deepEqual(diff([1,2,3], []), [1,2,3]);
 	});
-})
+});

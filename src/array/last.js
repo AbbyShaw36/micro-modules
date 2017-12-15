@@ -1,6 +1,6 @@
 export default (arr, num) => {
 	if (!Array.isArray(arr)) {
-		throw new Error('Array-first expects an array as first argument.');
+		throw new Error('Array-last expects an array as first argument.');
 	}
 
 	if (arr.length === 0) {

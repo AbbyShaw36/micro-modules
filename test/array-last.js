@@ -1,6 +1,6 @@
 var assert = require("assert");
 
-import last from "./";
+import last from "../src/array/last";
 
 describe("arrayLast", function() {
 	it("should throw an error if invalid arguments are passed", function() {

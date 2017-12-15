@@ -1,6 +1,6 @@
 var assert = require("assert");
 
-import isSorted from "./index";
+import isSorted from "../src/array/isSorted";
 
 describe("isSorted", function() {
 	it("should return true if the array had sorted", function() {
