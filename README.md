@@ -10,6 +10,7 @@
     - [diff](#diff)
     - [dedupe](#dedupe)
     - [flatten](#flatten)
+    - [group](#group)
 
 ## Array
 
@@ -124,6 +125,238 @@ flatten(['a', ['b', ['c']], 'd', ['e']]);
 
 flatten(['a', ['b', ['c', 'd', ['e']]]], 2);
 // => ['a', 'b', 'c', 'd', ['e']]
+```
+
+#### <a name="group"></a> group(arr, ...props)
+
+> 对数组进行分组
+> 可传入多个值作为分组依据
+> 值可以为 string， 返回属性值的 function，属性值也可为数组
+
+```js
+const arr1 = [
+    {tag: 'one', content: 'A'},
+    {tag: 'one', content: 'B'},
+    {tag: 'two', content: 'C'},
+    {tag: 'two', content: 'D'},
+    {tag: 'three', content: 'E'},
+    {tag: 'three', content: 'F'}
+];
+
+group(arr1, 'tag');
+/*
+    {
+         one: [
+            {tag: 'one', content: 'A'},
+            {tag: 'one', content: 'B'}
+        ],
+        two: [
+            {tag: 'two', content: 'C'},
+            {tag: 'two', content: 'D'}
+        ],
+        three: [
+            {tag: 'three', content: 'E'},
+            {tag: 'three', content: 'F'}
+        ]
+    }
+    这里 tag 值也可以为 Boolean 或 Number
+*/
+
+const arr = [
+    { data: { year: '2016', tag: 'one', month: 'jan', day: '01'}, content: '...'},
+    { data: { year: '2016', tag: 'one', month: 'jan', day: '01'}, content: '...'},
+    { data: { year: '2016', tag: 'one', month: 'jan', day: '02'}, content: '...'},
+    { data: { year: '2016', tag: 'one', month: 'jan', day: '02'}, content: '...'},
+    { data: { year: '2016', tag: 'one', month: 'feb', day: '10'}, content: '...'},
+    { data: { year: '2016', tag: 'one', month: 'feb', day: '10'}, content: '...'},
+    { data: { year: '2016', tag: 'one', month: 'feb', day: '12'}, content: '...'},
+    { data: { year: '2016', tag: 'one', month: 'feb', day: '12'}, content: '...'},
+    { data: { year: '2016', tag: 'two', month: 'jan', day: '14'}, content: '...'},
+    { data: { year: '2016', tag: 'two', month: 'jan', day: '14'}, content: '...'},
+    { data: { year: '2016', tag: 'two', month: 'jan', day: '16'}, content: '...'},
+    { data: { year: '2016', tag: 'two', month: 'jan', day: '16'}, content: '...'},
+    { data: { year: '2016', tag: 'two', month: 'feb', day: '18'}, content: '...'},
+    { data: { year: '2017', tag: 'two', month: 'feb', day: '18'}, content: '...'},
+    { data: { year: '2017', tag: 'two', month: 'feb', day: '10'}, content: '...'},
+    { data: { year: '2017', tag: 'two', month: 'feb', day: '10'}, content: '...'},
+    { data: { year: '2017', tag: 'three', month: 'jan', day: '01'}, content: '...'},
+    { data: { year: '2017', tag: 'three', month: 'jan', day: '01'}, content: '...'},
+    { data: { year: '2017', tag: 'three', month: 'jan', day: '02'}, content: '...'},
+    { data: { year: '2017', tag: 'three', month: 'jan', day: '02'}, content: '...'},
+    { data: { year: '2017', tag: 'three', month: 'feb', day: '01'}, content: '...'},
+    { data: { year: '2017', tag: 'three', month: 'feb', day: '01'}, content: '...'},
+    { data: { year: '2017', tag: 'three', month: 'feb', day: '02'}, content: '...'},
+    { data: { year: '2017', tag: 'three', month: 'feb', day: '02'}, content: '...'}
+];
+
+group(arr, 'data.year', 'data.tag', 'data.month', 'data.day');
+/*
+    {
+        2016: {
+            one: {
+                jan: {
+                    '01': [
+                        { data: { year: '2016', tag: 'one', month: 'jan', day: '01'}, content: '...'},
+                        { data: { year: '2016', tag: 'one', month: 'jan', day: '01'}, content: '...'}
+                    ],
+                    '02': [
+                        { data: { year: '2016', tag: 'one', month: 'jan', day: '02'}, content: '...'},
+                        { data: { year: '2016', tag: 'one', month: 'jan', day: '02'}, content: '...'}
+                    ]
+                },
+                feb: {
+                    '10': [
+                        { data: { year: '2016', tag: 'one', month: 'feb', day: '10'}, content: '...'},
+                        { data: { year: '2016', tag: 'one', month: 'feb', day: '10'}, content: '...'}
+                    ],
+                    '12': [
+                        { data: { year: '2016', tag: 'one', month: 'feb', day: '12'}, content: '...'},
+                        { data: { year: '2016', tag: 'one', month: 'feb', day: '12'}, content: '...'}
+                    ]
+                }
+            },
+            two: {
+                jan: {
+                    '14': [
+                        { data: { year: '2016', tag: 'two', month: 'jan', day: '14'}, content: '...'},
+                        { data: { year: '2016', tag: 'two', month: 'jan', day: '14'}, content: '...'}
+                    ],
+                    '16': [
+                        { data: { year: '2016', tag: 'two', month: 'jan', day: '16'}, content: '...'},
+                        { data: { year: '2016', tag: 'two', month: 'jan', day: '16'}, content: '...'}
+                    ]
+                },
+                feb: {
+                    '18': [{ data: { year: '2016', tag: 'two', month: 'feb', day: '18'}, content: '...'}]
+                }
+            }
+        },
+        2017: {
+            two: {
+                feb: {
+                    '18': [{ data: { year: '2017', tag: 'two', month: 'feb', day: '18'}, content: '...'}],
+                    '10': [
+                        { data: { year: '2017', tag: 'two', month: 'feb', day: '10'}, content: '...'},
+                        { data: { year: '2017', tag: 'two', month: 'feb', day: '10'}, content: '...'}
+                    ]
+                }
+            },
+            three: {
+                jan: {
+                    '01': [
+                        { data: { year: '2017', tag: 'three', month: 'jan', day: '01'}, content: '...'},
+                        { data: { year: '2017', tag: 'three', month: 'jan', day: '01'}, content: '...'}
+                    ],
+                    '02': [
+                        { data: { year: '2017', tag: 'three', month: 'jan', day: '02'}, content: '...'},
+                        { data: { year: '2017', tag: 'three', month: 'jan', day: '02'}, content: '...'}
+                    ]
+                },
+                feb: {
+                    '01': [
+                        { data: { year: '2017', tag: 'three', month: 'feb', day: '01'}, content: '...'},
+                        { data: { year: '2017', tag: 'three', month: 'feb', day: '01'}, content: '...'}
+                    ],
+                    '02': [
+                        { data: { year: '2017', tag: 'three', month: 'feb', day: '02'}, content: '...'},
+                        { data: { year: '2017', tag: 'three', month: 'feb', day: '02'}, content: '...'}
+                    ]
+                }
+            }
+        }
+    }
+ */
+
+const arr = [
+    { data: { tag: 'one', date: 'jan-01'}, content: '...'},
+    { data: { tag: 'one', date: 'jan-01'}, content: '...'},
+    { data: { tag: 'one', date: 'jan-02'}, content: '...'},
+    { data: { tag: 'one', date: 'jan-02'}, content: '...'},
+    { data: { tag: 'one', date: 'feb-10'}, content: '...'},
+    { data: { tag: 'one', date: 'feb-10'}, content: '...'},
+    { data: { tag: 'one', date: 'feb-12'}, content: '...'},
+    { data: { tag: 'one', date: 'feb-12'}, content: '...'},
+    { data: { tag: 'two', date: 'jan-14'}, content: '...'},
+    { data: { tag: 'two', date: 'jan-14'}, content: '...'},
+    { data: { tag: 'two', date: 'jan-16'}, content: '...'},
+    { data: { tag: 'two', date: 'jan-16'}, content: '...'},
+    { data: { tag: 'two', date: 'feb-18'}, content: '...'},
+    { data: { tag: 'two', date: 'feb-18'}, content: '...'},
+    { data: { tag: 'two', date: 'feb-10'}, content: '...'},
+    { data: { tag: 'two', date: 'feb-10'}, content: '...'},
+    { data: { tag: 'three', date: 'jan-01'}, content: '...'},
+    { data: { tag: 'three', date: 'jan-01'}, content: '...'},
+    { data: { tag: 'three', date: 'jan-02'}, content: '...'},
+    { data: { tag: 'three', date: 'jan-02'}, content: '...'},
+    { data: { tag: 'three', date: 'feb-01'}, content: '...'},
+    { data: { tag: 'three', date: 'feb-01'}, content: '...'},
+    { data: { tag: 'three', date: 'feb-02'}, content: '...'},
+    { data: { tag: 'three', date: 'feb-02'}, content: '...'}
+];
+
+group(arr, 'data.tag', function(obj) {
+    var date = obj.data.date.split('-');
+
+    obj.data.month = date[0];
+    obj.data.day = date[1];
+
+    delete obj.data.date;
+
+    return obj.data.month;
+}, function(obj) {
+    return obj.data.day;
+});
+/*
+    {
+        one:
+            { jan:
+                { '01':
+                    [ { data: { tag: 'one', month: 'jan', day: '01' }, content: '...' },
+                    { data: { tag: 'one', month: 'jan', day: '01' }, content: '...' } ],
+                '02':
+                    [ { data: { tag: 'one', month: 'jan', day: '02' }, content: '...' },
+                    { data: { tag: 'one', month: 'jan', day: '02' }, content: '...' } ] },
+            feb:
+                { '10':
+                    [ { data: { tag: 'one', month: 'feb', day: '10' }, content: '...' },
+                    { data: { tag: 'one', month: 'feb', day: '10' }, content: '...' } ],
+                '12':
+                    [ { data: { tag: 'one', month: 'feb', day: '12' }, content: '...' },
+                    { data: { tag: 'one', month: 'feb', day: '12' }, content: '...' } ] } },
+        two:
+            { jan:
+                { '14':
+                    [ { data: { tag: 'two', month: 'jan', day: '14' }, content: '...' },
+                    { data: { tag: 'two', month: 'jan', day: '14' }, content: '...' } ],
+                '16':
+                    [ { data: { tag: 'two', month: 'jan', day: '16' }, content: '...' },
+                    { data: { tag: 'two', month: 'jan', day: '16' }, content: '...' } ] },
+            feb:
+                { '10':
+                    [ { data: { tag: 'two', month: 'feb', day: '10' }, content: '...' },
+                    { data: { tag: 'two', month: 'feb', day: '10' }, content: '...' } ],
+                '18':
+                    [ { data: { tag: 'two', month: 'feb', day: '18' }, content: '...' },
+                    { data: { tag: 'two', month: 'feb', day: '18' }, content: '...' } ] } },
+        three:
+            { jan:
+                { '01':
+                    [ { data: { tag: 'three', month: 'jan', day: '01' }, content: '...' },
+                    { data: { tag: 'three', month: 'jan', day: '01' }, content: '...' } ],
+                '02':
+                    [ { data: { tag: 'three', month: 'jan', day: '02' }, content: '...' },
+                    { data: { tag: 'three', month: 'jan', day: '02' }, content: '...' } ] },
+            feb:
+                { '01':
+                    [ { data: { tag: 'three', month: 'feb', day: '01' }, content: '...' },
+                    { data: { tag: 'three', month: 'feb', day: '01' }, content: '...' } ],
+                '02':
+                    [ { data: { tag: 'three', month: 'feb', day: '02' }, content: '...' },
+                    { data: { tag: 'three', month: 'feb', day: '02' }, content: '...' } ]
+            }
+        }
+    };
+ */
 ```
 
 **[⬆ 回到顶部](#table-of-content)**
