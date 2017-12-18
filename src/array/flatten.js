@@ -4,6 +4,7 @@ export default function flatten(arr, deep) {
 	}
 
 	let res = [];
+	deep = (deep || 1) - 1;
 
 	for (let value of arr) {
 		if (Array.isArray(value)) {
