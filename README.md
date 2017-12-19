@@ -11,6 +11,8 @@
     - [dedupe](#dedupe)
     - [flatten](#flatten)
     - [group](#group)
+2. [String](#string)
+    - [decamelize](#decamelize)
 
 ## Array
 
@@ -30,6 +32,8 @@ first([], 2);
 // => null
 ```
 
+**[⬆ 回到顶部](#table-of-content)**
+
 #### <a name="last"></a> last(arr, num)
 
 > 获取数组的最后几个元素
@@ -42,6 +46,8 @@ last([1,2,3,4,5])
 last([1,2,3,4,5], 3)
 // => [3,4,5]
 ```
+
+**[⬆ 回到顶部](#table-of-content)**
 
 #### <a name="isSorted"></a> isSorted(arr, comparator)
 
@@ -57,6 +63,8 @@ isSorted([5,4,3,2,1], function(a, b) {
 });
 // => true
 ```
+
+**[⬆ 回到顶部](#table-of-content)**
 
 #### <a name="filled"></a> filled(filler, count)
 
@@ -78,6 +86,8 @@ filled(function(index) {
 // => [1, 2, 'Fizz', 4, 'Buzz', 'Fizz', 7, 8, 'Fizz', 'Buzz', 11, 'Fizz', 13, 14, 'FizzBuzz']
 ```
 
+**[⬆ 回到顶部](#table-of-content)**
+
 #### <a name="diff"></a> diff(arr1, arr2)
 
 > 获取两个数组不同的元素
@@ -95,6 +105,8 @@ diff([1,4], [2,3,4]);
 diff([1,2,3], []);
 // => [1,2,3]
 ```
+
+**[⬆ 回到顶部](#table-of-content)**
 
 #### <a name="dedupe"></a> dedupe(arr)
 
@@ -114,6 +126,8 @@ dedupe([{a: 1, b: 1}, {a: 2, b: 2}, {a: 3, b: 3}, {a: 3, b: 4}], value => value.
 // => [{a: 1, b: 1}, {a: 2, b: 2}, {a: 3, b: 3}]
 ```
 
+**[⬆ 回到顶部](#table-of-content)**
+
 #### <a name="flatten"></a> flatten(arr, deep)
 
 > 减少嵌套数组的维度
@@ -126,6 +140,8 @@ flatten(['a', ['b', ['c']], 'd', ['e']]);
 flatten(['a', ['b', ['c', 'd', ['e']]]], 2);
 // => ['a', 'b', 'c', 'd', ['e']]
 ```
+
+**[⬆ 回到顶部](#table-of-content)**
 
 #### <a name="group"></a> group(arr, ...props)
 
@@ -357,6 +373,23 @@ group(arr, 'data.tag', function(obj) {
         }
     };
  */
+```
+
+**[⬆ 回到顶部](#table-of-content)**
+
+## String
+
+#### <a name="decamelize"></a> decamelize(str, separator)
+
+> 用于将驼峰格式的字符串用自定义分隔符分隔，并转为小写
+> 默认使用 “ - ” 进行替换
+
+```js
+decamelize("thisIsATest", "_")
+// => this_is_a_test
+
+decamelize("myURLString", " ")
+// => my url string
 ```
 
 **[⬆ 回到顶部](#table-of-content)**
