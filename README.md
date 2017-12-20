@@ -13,6 +13,7 @@
     - [group](#group)
 2. [String](#string)
     - [decamelize](#decamelize)
+    - [padLeft](#padleft)
 
 ## Array
 
@@ -390,6 +391,22 @@ decamelize("thisIsATest", "_")
 
 decamelize("myURLString", " ")
 // => my url string
+```
+
+**[⬆ 回到顶部](#table-of-content)**
+
+#### <a name="padleft"></a> padLeft(str, len, filler)
+
+> 用自定义字符从左填充字符串至指定长度
+> len 为指定长度
+> filler 为填充字符，默认字符为 “ - ”
+
+```js
+padLeft("abc", 10);
+// => -------abc
+
+padLeft("123", 10, "0");
+// => 0000000123
 ```
 
 **[⬆ 回到顶部](#table-of-content)**
