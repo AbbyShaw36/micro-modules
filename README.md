@@ -14,6 +14,7 @@
 2. [String](#string)
     - [decamelize](#decamelize)
     - [padLeft](#padleft)
+    - [toCamelCase](#tocamelcase)
 
 ## Array
 
@@ -407,6 +408,23 @@ padLeft("abc", 10);
 
 padLeft("123", 10, "0");
 // => 0000000123
+```
+
+**[⬆ 回到顶部](#table-of-content)**
+
+#### <a name="tocamelcase"></a> toCamelCase(str)
+
+> 将字符串转成驼峰式
+
+```js
+toCamelCase("THIS_IS_A_STRING");
+// => thisIsAString
+
+toCamelCase("this.is.a.string");
+// => thisIsAString
+
+toCamelCase("-this__is$%a-string...");
+// => thisIsAString
 ```
 
 **[⬆ 回到顶部](#table-of-content)**
