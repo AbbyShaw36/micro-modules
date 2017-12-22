@@ -17,6 +17,7 @@
     - [toCamelCase](#tocamelcase)
 3. [Object](#object)
     - [filter](#filter)
+    - [zipmap](#zipmap)
 
 ## Array
 
@@ -456,6 +457,40 @@ function filter(key, value) {
 filter(arr, ['a', 'b']);
 filter(arr, filter);
 // => { a: 111, b: 222 }
+```
+
+**[⬆ 回到顶部](#table-of-content)**
+
+#### <a name="zipmap"></a> zipmap(keys, values)
+
+> 将数组转换成映射
+
+1. 使用 keys 和 values
+```js
+zipmap(['a', 'b', 'c'], [1, 2, 3]);
+// => { a: 1, b: 2, c: 3 }
+```
+
+2. 使用数组对象
+```js
+const objs = [
+    { key: 'foo', value: 'bar' },
+    { key: 'hi', value: 'bye' },
+];
+
+zipmap(objs);
+// => { foo: 'bar', hi: 'bye' }
+```
+
+3. 使用配对数组
+```js
+const pairs = [
+    ['foo', 'bar'],
+    ['hi', 'bye']
+];
+
+zipmap(objs);
+// => { foo: 'bar', hi: 'bye' }
 ```
 
 **[⬆ 回到顶部](#table-of-content)**
