@@ -15,6 +15,8 @@
     - [decamelize](#decamelize)
     - [padLeft](#padleft)
     - [toCamelCase](#tocamelcase)
+3. [Object](#object)
+    - [filter](#filter)
 
 ## Array
 
@@ -425,6 +427,35 @@ toCamelCase("this.is.a.string");
 
 toCamelCase("-this__is$%a-string...");
 // => thisIsAString
+```
+
+**[⬆ 回到顶部](#table-of-content)**
+
+## Object
+
+#### <a name="filter"></a> filter(obj, filter)
+
+> 对对象进行筛选
+> filter 值可为 function 或 array
+
+```js
+const arr = {
+    a: 111,
+    b: 222,
+    c: 333
+};
+
+function filter(key, value) {
+    if (['a', 'b'].includes(key)) {
+        return true;
+    }
+
+    return false;
+}
+
+filter(arr, ['a', 'b']);
+filter(arr, filter);
+// => { a: 111, b: 222 }
 ```
 
 **[⬆ 回到顶部](#table-of-content)**
